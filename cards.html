@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      div {
+        color: #000;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 1.6px;
+      }
+
+      .card-bottom {
+        border-radius: 0px 0px 10px 10px;
+        background: linear-gradient(
+            0deg,
+            rgba(218, 88, 88, 0.2) 0%,
+            rgba(0, 0, 0, 0.2) 100%
+          ),
+          rgba(221, 156, 97, 0.8);
+        height: 50px;
+        padding: 15px 0px 15px 0px;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 1.6px;
+      }
+      .card {
+        border-radius: 10px;
+        background: #fff;
+        margin: 10px;
+      }
+      .image {
+        border-radius: 5px;
+        border: 1px dashed #000;
+        background: rgba(255, 255, 255, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="card-container" style="display: flex; flex-wrap: wrap"></div>
+    <script>
+      // Data containing names and image sources
+      const cardData = [
+        { name: "John Doe", imageSrc: "images/Rectangle 86.png" },
+        { name: "Jane Smith", imageSrc: "images/Rectangle 86.png" },
+        // Add more as needed
+      ];
+
+      // Function to add cards dynamically using map
+      function addCards() {
+        var cardContainer = document.getElementById("card-container");
+
+        cardData.map((data) => {
+          var card = document.createElement("div");
+          card.className = "card";
+          card.style.width = "10rem";
+          card.style.height = "10rem";
+
+          var cardImage = document.createElement("img");
+          cardImage.className = "card-img-top";
+          cardImage.src = data.imageSrc;
+          cardImage.alt = "Card image cap";
+
+          var cardBottom = document.createElement("div");
+          cardBottom.className = "card-bottom";
+          cardBottom.style.color = "#000";
+          cardBottom.innerText = data.name;
+
+          card.appendChild(cardImage);
+          card.appendChild(cardBottom);
+
+          cardContainer.appendChild(card);
+        });
+      }
+
+      // Call the function to add cards
+      addCards();
+    </script>
+  </body>
+</html>

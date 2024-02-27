@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0%;
+      padding: 0%;
+      background-image: url('images/blur.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+          height:100%;
+    }
+
+    .containerr {
+      display: flex;
+      align-items: flex-start;
+      height: 100%;
+      /* Align items at the start */
+    }
+
+    .sidebar {
+      width: 20%;
+      /* Sidebar width */
+      padding: 20px;
+      min-height: 100vh;
+      height:100%;
+      box-sizing: border-box;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 16px;
+
+
+    }
+
+    .content {
+      flex-grow: 1;
+      /* Grow to fill remaining space */
+      box-sizing: border-box;
+    }
+
+    .img-inventory {
+      aspect-ratio: 4;
+      object-fit: contain;
+      object-position: center;
+      width: 200px;
+      max-width: 100%;
+    }
+
+    .side-content {
+      color: #000;
+      font-family: Outfit, sans-serif;
+      margin-top: 40px;
+      color: #000;
+      font-weight: 400;
+      text-align: center;
+      letter-spacing: 1.6px;
+    }
+
+    @media (max-width: 991px) {
+      .side-content {
+        margin-top: 40px;
+      }
+    }
+
+    .line {
+      background: linear-gradient(90deg,
+          rgba(221, 156, 97, 0) 0%,
+          #dd9c61 52%,
+          rgba(221, 156, 97, 0) 100%);
+      align-self: stretch;
+      margin-top: 47px;
+      height: 2px;
+    }
+
+    @media (max-width: 991px) {
+      .line {
+        margin-top: 40px;
+      }
+    }
+
+    .active-link {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="containerr">
+    <div class="sidebar">
+      <img loading="lazy" src="./images/Teckybot Inventory 2.png" class="img-inventory" />
+      <div class=" side-content" onclick="loadContent('sidebar_files/schooldata.php')" id="schooldata-link">SCHOOL</div>
+      <div class="line"></div>
+      <div class="side-content" onclick="loadContent('sidebar_files/collegedata.php')" id="collegedata-link">COLLEGE</div>
+      <div class="line"></div>
+      <div class="side-content" onclick="loadContent('sidebar_files/externaldata.php')" id="externaldata-link">EXTERNAL</div>
+      <div class=" line"></div>
+      <div class=" side-content" onclick="loadContent('sidebar_files/trainingdata.php')" id="trainingdata-link">IN HOUSE TRAINING
+      </div>
+    </div>
+    <div class="content"></div>
+  </div>
+  <script>
+    function loadContent(url) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.querySelector(".content").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+
+      document.querySelectorAll('.side-content').forEach(function (link) {
+        link.classList.remove('active-link');
+      });
+
+      // Add active class to the clicked link
+      document.getElementById(url.split('.')[0] + '-link').classList.add('active-link');
+
+    }
+  </script>
+</body>
+
+</html>
